@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular.min
-//= require store
+//= require launch_store
 //= require_tree .
