@@ -1,2 +1,0 @@
-class AngularController < ApplicationController
-end
