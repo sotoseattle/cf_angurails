@@ -1,0 +1,15 @@
+
+<div data-ng-controller="StoreController as store">
+  <header>
+    <h2 class="text-center">Soto's Magnificent Emporium</h2>
+    <h3 class="text-center"> an sinangular store </h3>
+  </header>
+
+  <div class="list-group">
+    <div class="list-group-item" data-ng-repeat="product in store.products">
+      <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+      <product-gallery></product-gallery>
+      <product-tabs></product-tabs>
+    </div>
+  </div>
+</div>
