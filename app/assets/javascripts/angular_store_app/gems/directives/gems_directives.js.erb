@@ -1,30 +1,31 @@
-  var app = angular.module("store-directives", []);
+(function() {
+  var app = angular.module("StoreDirectives", []);
 
   app.directive("productDescription", function() {
     return {
       restrict: "A",
-      templateUrl: "templates/product-description.html"
+      templateUrl: "<%= asset_path('angular_store_app/gems/views/description.html')%>"
     };
   });
 
   app.directive("productReviews", function() {
     return {
       restrict: "A",
-      templateUrl: "templates/product-reviews.html"
+      templateUrl: "<%= asset_path('angular_store_app/gems/views/reviews.html')%>"
     };
   });
 
   app.directive("productSpecs", function() {
     return {
       restrict: "A",
-      templateUrl: "templates/product-specs.html"
+      templateUrl: "<%= asset_path('angular_store_app/gems/views/specs.html')%>"
     };
   });
 
   app.directive("productTabs", function() {
     return {
       restrict: "A",
-      templateUrl: "templates/product-tabs.html",
+      templateUrl: "<%= asset_path('angular_store_app/gems/views/tabs.html')%>",
       controller: function() {
         this.tab = 1;
         this.isSet = function(checkTab) {
@@ -41,7 +42,7 @@
   app.directive("productGallery", function() {
     return {
       restrict: "A",
-      templateUrl: "templates/product-gallery.html",
+      templateUrl: "<%= asset_path('angular_store_app/gems/views/gallery.html')%>",
       controller: function() {
         this.current = 0;
         this.setCurrent = function(imageNumber) {
@@ -51,3 +52,4 @@
       controllerAs: "gallery"
     };
   });
+})();
