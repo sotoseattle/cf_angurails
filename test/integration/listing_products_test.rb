@@ -2,16 +2,15 @@ require 'test_helper'
 
 class ListingProductsTest < ActionDispatch::IntegrationTest
   setup do
-    Product.create!(
-      name: 'Azurite',
+    @category = Category.create!(name: 'gems')
+    @category.products.create!(
+      name: 'Azurite', price: 110.50, category_id: @category_id,
       description: 'Some gems have hidden qualities \
-      beyond their luster, beyond their shine... Azurite is one of those gems',
-      price: 110.50)
-    Product.create!(
-      name: 'Bloodstone',
+      beyond their luster, beyond their shine... Azurite is one of those gems')
+    @category.products.create!(
+      name: 'Bloodstone', price: 22.90, category_id: @category_id,
       description: 'Origin of the Bloodstone \
-      is unknown, hence its low value. It has a very high shine and 12 sides, however.',
-      price: 22.90)
+      is unknown, hence its low value. It has a very high shine and 12 sides, however.')
   end
 
   test 'listing products' do
@@ -20,7 +19,11 @@ class ListingProductsTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
 
-    assert_equal Product.count, json(response.body).size
+    products = json(response.body)
+    assert_equal Product.count, products.size
+
+    product = Product.find(products.first[:id])
+    assert_equal @category.id, product.category_id
   end
 
   test 'most expensive gems' do
