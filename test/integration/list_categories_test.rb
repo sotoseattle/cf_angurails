@@ -7,7 +7,7 @@ class ListCategoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'it lists the existing categories' do
-    get '/api/categories'
+    get '/api/v1/categories'
 
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type

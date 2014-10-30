@@ -14,7 +14,7 @@ class ListingProductsTest < ActionDispatch::IntegrationTest
   end
 
   test 'listing products' do
-    get '/api/products'
+    get '/api/v1/products'
 
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
@@ -27,7 +27,7 @@ class ListingProductsTest < ActionDispatch::IntegrationTest
   end
 
   test 'most expensive gems' do
-    get '/api/products?price=100.00'
+    get '/api/v1/products?price=100.00'
 
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type

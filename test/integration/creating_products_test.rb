@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CreatingProductsTest < ActionDispatch::IntegrationTest
   test 'create a product with valid data' do
-    post '/api/products', { product: {
+    post '/api/v1/products', { product: {
       name: 'Ruby',
       description: 'The most beautiful of them all',
       price: '999.99',
@@ -19,7 +19,7 @@ class CreatingProductsTest < ActionDispatch::IntegrationTest
     assert_equal Mime::JSON, response.content_type
 
     product = json(response.body)
-    assert_equal api_product_url(product[:id]), response.location
+    assert_equal api_v1_product_url(product[:id]), response.location
 
     assert_equal 'Ruby', product[:name]
     assert_equal 999.99, product[:price]
@@ -31,7 +31,7 @@ class CreatingProductsTest < ActionDispatch::IntegrationTest
   end
 
   test 'does not create a product with invalid data' do
-    post '/api/products', { product: {
+    post '/api/v1/products', { product: {
       name: nil,
       description: 'The most beautiful of them all',
       price: '999.99',
