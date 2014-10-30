@@ -1,0 +1,61 @@
+<header>
+  <h2 class='text-center'> Inventory Dashboard </h2>
+  <h3 class='text-center'> Soto's Magnificent Emporium </h3>
+</header>
+
+
+<div data-ng-controller='AdminCtrl' data-ng-init='index()'>
+
+  <div class='wrapit'>
+    <table id='adminList'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat='product in products'>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.description | limitTo : 50}}</td>
+          <td class='cell_20'>
+          </td>
+          <td class='cell_20'>
+            <button data-ng-click='product.deleteConfirm = true' data-ng-hide='product.deleteConfirm'>Delete</button>
+            <button data-ng-show='product.deleteConfirm' data-ng-click='destroy(product)'>Yes</button>
+            <button data-ng-show='product.deleteConfirm' data-ng-click='product.deleteConfirm = false'>No</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <table class='t2'>
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td><label>Name</label>:</td>
+        <td><input type='text' data-ng-model='newProduct.name'></td>
+      </tr>
+      <tr>
+        <td><label>Price</label>:</td>
+        <td><input type='number' data-ng-model='newProduct.price'></td>
+      </tr>
+      <tr>
+        <td><label>Description</label>:</td>
+        <td><input type='text' data-ng-model='newProduct.description'></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button data-ng-click='create(newProduct)'>Create new product</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
