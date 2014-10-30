@@ -26,7 +26,19 @@
         })
     };
 
-    // $scope.update = function(note){};
+    $scope.update = function(product){
+      $http({
+        method: 'PATCH',
+        url: '/api/products/' + product.id,
+        data: product })
+        .success(function(){
+          product.editing = false; })
+        .error(function(data, status){
+          $scope.errors.push(data);
+          console.log(data);
+          console.log(status);
+        })
+    };
 
     $scope.destroy = function(product){
       $http({

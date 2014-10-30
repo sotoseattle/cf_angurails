@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :products, only: [:index, :create, :destroy]
+    resources :products, only: [:index, :create, :update, :destroy]
     resources :categories, only: :index
     resources :genres
   end
