@@ -1,7 +1,7 @@
 (function(){
   var app = angular.module('GemStore');
 
-  app.controller('AdminCtrl', ['$scope', '$http', function($scope, $http) {
+  app.controller('AdminCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
     $scope.products = [];
     $scope.errors = [];
 

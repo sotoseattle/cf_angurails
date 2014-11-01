@@ -15,5 +15,9 @@ module Angurails
         g.test_framework = false
         g.helper = false
     end
+
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
   end
 end

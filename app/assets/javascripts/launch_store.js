@@ -7,44 +7,28 @@
     $httpProvider.defaults.headers
       .common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     $httpProvider.defaults.headers
-      .common.Accept = 'Application/json';
+      .common.Accept = 'application/json';
   }]);
 
-  app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-      .when('/', {
-        controller: 'AdminCtrl',
-        templateUrl: '/templates/admin_view.html'
-      })
-      .when('/users', {
-        controller: 'UsersCtrl',
-        templateUrl: '/templates/users_view.html'
-      })
-      .otherwise({
-        redirectTo: '/users'
-      });
-  }]);
+  app.run(['$rootScope','$cookieStore', '$location', function($rootScope, $cookieStore, $location) {
 
-  app.run(['$rootScope','$cookies','$http', function($rootScope, $cookies,$http){
-    $rootScope.isLoggedIn = function(){
-      var currentUser = $cookies.c_user;
-      return typeof(currentUser) !== 'undefined' && currentUser !== '';
+    $rootScope.isLoggedIn = function() {
+      return ($cookieStore.get('logged_user') ? true : false);
     };
-    $rootScope.currentUser = function(){
-      console.log($cookies.c_user);
-      return $cookies.c_user;
+
+    $rootScope.logged_user = function() {
+      return $cookieStore.get('logged_user').email;
     };
-    $rootScope.logOut = function(){
-      $http({
-        method:'DELETE',
-        url: '/users/sign_out'
-      })
-      .success(function(){
-        $cookies.c_user = '';
-      })
-      .error(function(){
-        console.log('error loggin out');
-      });
+
+    $rootScope.StorePath = function() {
+      $location.path('/store_front');
     };
+    $rootScope.UserEntrancePath = function() {
+      $location.path('/admin');
+    };
+    $rootScope.AdminDashboardPath = function() {
+      $location.path('/dashboard');
+    };
+
   }]);
 })();

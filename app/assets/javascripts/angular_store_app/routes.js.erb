@@ -1,0 +1,21 @@
+(function() {
+  var app = angular.module('GemStore');
+  app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+      .when('/store_front', {
+        controller: 'StoreController',
+        templateUrl: '<%= asset_path("angular_store_app/gems/views/store_forefront.html") %>'
+      })
+      .when('/admin', {
+        controller: 'UsersCtrl',
+        templateUrl: '<%= asset_path("angular_store_app/users/views/user_entrance.html") %>'
+      })
+      .when('/dashboard', {
+        controller: 'AdminCtrl',
+        templateUrl: '<%= asset_path("angular_store_app/admin/views/admin_dashboard.html") %>'
+      })
+      .otherwise({
+        redirectTo: '/store_front'
+      });
+  }]);
+})();
