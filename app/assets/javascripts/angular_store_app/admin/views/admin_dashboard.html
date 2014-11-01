@@ -1,0 +1,82 @@
+<header>
+  <h2 class='text-center'> Inventory Dashboard </h2>
+  <h3 class='text-center'> Soto's Magnificent Emporium </h3>
+</header>
+
+<div>
+  <div data-ng-show="!isLoggedIn()">
+    Sorry, you are not Logged in.
+    <button data-ng-click="UserEntrancePath()">User Verification</button>
+  </div>
+  <div data-ng-show="isLoggedIn()">
+    <button data-ng-controller='UsersCtrl' data-ng-click="signOut()">Sign Out</button>
+  </div>
+</div><br><br>
+
+<div data-ng-show="isLoggedIn()">
+  <div data-ng-controller='AdminCtrl' data-ng-init='index()'>
+    <div class='wrapit'>
+      <table id='adminList'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat='product in products'>
+            <td>
+              <p data-ng-hide='product.editing'>{{product.name}}</p>
+              <input type='text' data-ng-model='product.name' data-ng-show='product.editing'>
+            </td>
+
+            <td>
+              <p data-ng-hide='product.editing'>{{product.price}}</p>
+              <input type='number' data-ng-model='product.price' data-ng-show='product.editing'>
+            </td>
+
+            <td class='cell_20'>
+              <button data-ng-click='product.editing = true' data-ng-hide='product.editing'>Edit</button>
+              <button data-ng-click='update(product)' data-ng-show='product.editing'>Yes</button>
+              <button data-ng-click='product.editing = false' data-ng-show='product.editing'>No</button>
+            </td>
+
+            <td class='cell_20'>
+              <button data-ng-click='product.deleteConfirm = true' data-ng-hide='product.deleteConfirm'>Delete</button>
+              <button data-ng-show='product.deleteConfirm' data-ng-click='destroy(product)'>Yes</button>
+              <button data-ng-show='product.deleteConfirm' data-ng-click='product.deleteConfirm = false'>No</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <table class='t2'>
+      <thead></thead>
+      <tbody>
+        <tr>
+          <td><label>Name</label>:</td>
+          <td><input type='text' data-ng-model='newProduct.name'></td>
+        </tr>
+        <tr>
+          <td><label>Price</label>:</td>
+          <td><input type='number' data-ng-model='newProduct.price'></td>
+        </tr>
+        <tr>
+          <td><label>Description</label>:</td>
+          <td><input type='text' data-ng-model='newProduct.description'></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button data-ng-click='create(newProduct)'>Create new product</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<button data-ng-click='StorePath()'>Back to Store</button>

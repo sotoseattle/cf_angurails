@@ -9,7 +9,7 @@ class DeletingProductTest < ActionDispatch::IntegrationTest
       price: 110.50)
   end
   test 'delete a product' do
-    delete "/api/products/#{@product.id}"
+    delete "/api/v1/products/#{@product.id}"
     assert_equal 204, response.status
   end
 end

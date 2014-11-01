@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0.beta2'
 
 gem 'coffee-rails', '~> 4.0.0'
+gem 'devise', '~>3.4.1'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0.0.beta2'
 gem 'sass-rails', '~> 5.0.0.beta1'

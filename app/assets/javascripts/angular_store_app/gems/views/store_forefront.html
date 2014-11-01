@@ -1,0 +1,16 @@
+<div data-ng-controller="StoreController">
+  <header>
+    <h2 class="text-center">Soto's Magnificent Emporium</h2>
+    <h3 class="text-center"> an sinangular store </h3>
+  </header>
+
+  <div class="list-group">
+    <div class="list-group-item" data-ng-repeat="product in products">
+      <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+      <div data-product-gallery></div>
+      <div data-product-tabs></div>
+    </div>
+  </div>
+</div>
+
+<button data-ng-click='AdminDashboardPath()'>Admin</button>
